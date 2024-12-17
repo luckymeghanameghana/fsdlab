@@ -1,20 +1,81 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
-      <title>Star Rating System</title>
-    <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Movie Rating Example</title>
+    <style>
+        body {
+            background-color: white;
+            margin: 0px;
+        }
+        .fa-star {
+            font-size: 50px;
+            align-content: center;
+        }
+        .container {
+            height: auto;
+            width: 600px;
+            margin: auto;
+            text-align: center;
+        }
+        img {
+            margin: 20px 0;
+            max-width: 100%;
+            height: 580px;
+        }
+        h2, h3 {
+            color: black;
+        }
+    </style>
 </head>
 <body>
-    <div class="star-rating">
-        <span class="star" data-value="1">&#9733;</span>
-        <span class="star" data-value="2">&#9733;</span>
-        <span class="star" data-value="3">&#9733;</span>
-        <span class="star" data-value="4">&#9733;</span>
-        <span class="star" data-value="5">&#9733;</span>
+    <div class="container">
+        <!-- Movie Title -->
+        <h2 style="margin-top: 20px;">Avengers</h2>
+
+        <!-- Movie Poster -->
+        <img src="avengers.jpg" alt="Avengers Movie Poster">
+
+        <!-- Star Rating Section -->
+        <div class="con">
+            <h3>Rate our movie:</h3>
+            <i class="fa fa-star" aria-hidden="true" id="st1"></i>
+            <i class="fa fa-star" aria-hidden="true" id="st2"></i>
+            <i class="fa fa-star" aria-hidden="true" id="st3"></i>
+            <i class="fa fa-star" aria-hidden="true" id="st4"></i>
+            <i class="fa fa-star" aria-hidden="true" id="st5"></i>
+        </div>
+
+        <!-- Rating Display Section -->
+        <div id="rating-display" style="margin-top: 20px; font-size: 18px; color: blue;">
+            <!-- The rating will be shown here -->
+        </div>
     </div>
-    <div id="rating-value">Rating: 0</div>
-   
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="script.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $(".fa-star").click(function() {
+                // Reset all stars' color to black
+                $(".fa-star").css("color", "black");
+                
+                // Get the star's ID that was clicked
+                let starId = $(this).attr("id");
+                let rating = starId.charAt(2); // Extract the rating number from ID (e.g., st1 -> 1)
+                
+                // Color all stars up to the clicked one in yellow
+                for (let i = 1; i <= rating; i++) {
+                    $("#st" + i).css("color", "yellow");
+                }
+                
+                // Display the rating below the stars
+                $("#rating-display").text("You rated " + rating + " out of 5");
+            });
+        });
+    </script>
 </body>
 </html>
-
