@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Registration Form</title>
+</head>
+<body>
+<body style ="background-color:powderblue;">
+    <center>
+  <form id="registerForm">
+    <input type="text" id="username" placeholder="Username" required><br>
+    <input type="password" id="password" placeholder="Password" required><br>
+    <input type="email" id="email" placeholder="Email" required><br>
+    <input type="text" id="phone" placeholder="Phone (10 digits)" required><br>
+    <button type="submit">Register</button>
+  </form>
+
+  <script>
+    document.getElementById("registerForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+      const email = document.getElementById("email").value;
+      const phone = document.getElementById("phone").value;
+
+      const usernameRegex = /^[a-zA-Z0-9]{5,15}$/;
+      const passwordRegex = /^(?=.[a-zA-Z])(?=.\d)(?=.[@$!%?&])[A-Za-z\d@$!%*?&]{8,}$/;
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const phoneRegex = /^\d{10}$/;
+
+      if (!usernameRegex.test(username)) alert("Invalid Username!");
+      else if (!passwordRegex.test(password)) alert("Invalid Password!");
+      else if (!emailRegex.test(email)) alert("Invalid Email!");
+      else if (!phoneRegex.test(phone)) alert("Invalid Phone Number!");
+      else alert("Registration Successful!");
+    });
+  </script>
+  </center>
+</body>
+</html>
