@@ -1,0 +1,30 @@
+<html>
+<head>
+  <title>change bg</title>
+  </head>
+<body>
+ 
+<style>
+    .shape{
+        width:100px;
+        height:100px;
+        background: #000;
+        border-radius:50%;
+    }
+    .square{
+        border-radius:0;
+    }
+    </style>
+    <div class="shape" onclick="this.classList.toggle('Square')"></div>
+    <center>
+        <h1>Change Background Color</h1>
+  <button id="changeColour">Change Button</button>
+  <script>
+    document.getElementById("changeColour").onclick=()=>{
+      document.body.style.backgroundColor=
+    };
+    
+  </script>
+  </center>
+</body>
+</html>
