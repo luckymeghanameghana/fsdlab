@@ -1,75 +1,34 @@
-star.html
 <!DOCTYPE html>
+<html lang="en">
 <head>
-      <title>Star Rating System</title>
-    <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star Rating</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-    <div class="star-rating">
-        <span class="star" data-value="1">&#9733;</span>
-        <span class="star" data-value="2">&#9733;</span>
-        <span class="star" data-value="3">&#9733;</span>
-        <span class="star" data-value="4">&#9733;</span>
-        <span class="star" data-value="5">&#9733;</span>
+    <h2>Rate Us:</h2>
+    <div>
+        <i class="fa fa-star" id="st1"></i>
+        <i class="fa fa-star" id="st2"></i>
+        <i class="fa fa-star" id="st3"></i>
+        <i class="fa fa-star" id="st4"></i>
+        <i class="fa fa-star" id="st5"></i>
     </div>
-    <div id="rating-value">Rating: 0</div>
-   
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="script.js"></script>
+    <div id="rating-display">Rating: 0</div>
+
+    <script>
+        $(function() {
+            $(".fa-star").click(function() {
+                let rating = $(this).attr("id").charAt(2);
+                $(".fa-star").css("color", "black");
+                for (let i = 1; i <= rating; i++) {
+                    $("#st" + i).css("color", "yellow");
+                }
+                $("#rating-display").text("Rating: " + rating + " out of 5");
+            });
+        });
+    </script>
 </body>
 </html>
-styles.css
-.star-rating {
-    display: flex;
-    font-size: 2rem;
-    cursor: pointer;
-}
-
-.star {
-    color: #ddd;
-    transition: color 0.2s ease;
-}
-
-.star.hover,
-.star.selected {
-    color: gold;
-}
-
-#rating-value {
-    margin-top: 10px;
-    font-size: 1.2rem;
-}
-script.js
-$(document).ready(function() {
-    var rating = 0;
-
-    // Mouse enter event to highlight stars
-    $('.star').on('mouseenter', function() {
-        var value = $(this).data('value');
-        $('.star').each(function() {
-            if ($(this).data('value') <= value) {
-                $(this).addClass('hover');
-            } else {
-                $(this).removeClass('hover');
-            }
-        });
-    });
-
-    // Mouse leave event to remove highlights
-    $('.star').on('mouseleave', function() {
-        $('.star').removeClass('hover');
-    });
-
-    // Click event to set rating
-    $('.star').on('click', function() {
-        rating = $(this).data('value');
-        $('#rating-value').text('Rating: ' + rating);
-
-        $('.star').each(function() {
-            if ($(this).data('value') <= rating) {
-                $(this).addClass('selected');
-            } else {
-                $(this).removeClass('selected');
-            }
-        });
-    });
