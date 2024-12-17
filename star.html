@@ -5,30 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Star Rating</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .star {
+            font-size: 40px;
+            color: grey;
+            cursor: pointer;
+        }
+        .selected {
+            color: gold;
+        }
+    </style>
 </head>
 <body>
-    <h2>Rate Us:</h2>
+    <h2>Rate the Movie</h2>
     <div>
-        <i class="fa fa-star" id="st1"></i>
-        <i class="fa fa-star" id="st2"></i>
-        <i class="fa fa-star" id="st3"></i>
-        <i class="fa fa-star" id="st4"></i>
-        <i class="fa fa-star" id="st5"></i>
+        <span class="star">★</span>
+        <span class="star">★</span>
+        <span class="star">★</span>
+        <span class="star">★</span>
+        <span class="star">★</span>
     </div>
-    <div id="rating-display">Rating: 0</div>
+    <div id="output">Rating: 0/5</div>
 
     <script>
-        $(function() {
-            $(".fa-star").click(function() {
-                let rating = $(this).attr("id").charAt(2);
-                $(".fa-star").css("color", "black");
-                for (let i = 1; i <= rating; i++) {
-                    $("#st" + i).css("color", "yellow");
-                }
-                $("#rating-display").text("Rating: " + rating + " out of 5");
-            });
-        });
+      let rating = 0;
+
+$(".star").hover(
+    function() {
+        $(".star").slice(0, $(this).index() + 1).addClass("selected");
+    },
+    function() {
+        $(".star").slice(0, rating).addClass("selected").end().slice(rating).removeClass("selected");
+    }
+).click(function() {
+    rating = $(this).index() + 1;
+    $("#output").text("Rating: " + rating + "/5");
+});
     </script>
 </body>
 </html>
