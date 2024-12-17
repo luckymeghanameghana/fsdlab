@@ -1,0 +1,39 @@
+ CREATE DATABASE user_db;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> USE user_db;
+Database changed
+mysql> CREATE TABLE users (
+    ->     id INT AUTO_INCREMENT PRIMARY KEY,
+    ->     username VARCHAR(255) NOT NULL,
+    ->     password VARCHAR(255) NOT NULL
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> show tables;
++-------------------+
+| Tables_in_user_db |
++-------------------+
+| users             |
++-------------------+
+1 row in set (0.01 sec)
+
+mysql> describe users;
++----------+--------------+------+-----+---------+----------------+
+| Field    | Type         | Null | Key | Default | Extra          |
++----------+--------------+------+-----+---------+----------------+
+| id       | int          | NO   | PRI | NULL    | auto_increment |
+| username | varchar(255) | NO   |     | NULL    |                |
+| password | varchar(255) | NO   |     | NULL    |                |
++----------+--------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> INSERT INTO users (username, password) VALUES ('admin', 'admin123');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO users (username, password) VALUES ('user1', 'password1');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO users (username, password) VALUES ('deek', 'deek123');
+Query OK, 1 row affected (0.00 sec)
+
