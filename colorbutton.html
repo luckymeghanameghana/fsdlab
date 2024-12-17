@@ -1,30 +1,41 @@
-ad>
-  <title>change bg</title>
-  </head>
-<body>
- 
-<style>
-    .shape{
-        width:100px;
-        height:100px;
-        background: #000;
-        border-radius:50%;
-    }
-    .square{
-        border-radius:0;
-    }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Shape and Color</title>
+    <style>
+        body{
+            text-align: center;
+        }
+        #block{
+            height:100px;
+            width:100px;
+            background-color: black;
+            margin:auto;
+        }
+        .circle{
+            border-radius: 50%;
+        }
     </style>
-    <div class="shape" onclick="this.classList.toggle('Square')"></div>
-    <center>
-        <h1>Change Background Color</h1>
-  <button id="changeColour">Change Button</button>
-  <script>
-    document.getElementById("changeColour").onclick=()=>{
-      document.body.style.backgroundColor=
-      "#"+Math.floor(Math.random()*16777215).toString(16)
-    };
+</head>
+<body>
+    <div id="block" class="square"></div>
+    <button onClick="csc()">change</button>
+    <script>
+        function csc(){
+            const b=document.getElementById("block");
+            const nc=`#${Math.floor(Math.random()*16777215).toString(16)}`;
+            b.style.backgroundColor=nc;
+            if(b.className==='circle'){
+                b.className='square'
+            }
+            else{
+                b.className='circle'
+            }
+            
+        }
+    </script>
     
-  </script>
-  </center>
 </body>
 </html>
